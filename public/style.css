@@ -1,0 +1,95 @@
+:root{--bg:#f4f4f1;--card:#fff;--ink:#1c1c1a;--mute:#6b6a64;--line:#e2e0d8;--soft:#f8f7f3;--kill:#c62828;--fix:#b26a00;--ship:#1b7f3b;--gap:10px}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:13px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+h1{margin:0;font-size:19px}
+h2{margin:0 0 5px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mute)}
+p{margin:0}ul,ol{margin:0;padding-left:17px}li{margin:2px 0}
+.muted{color:var(--mute);font-size:12px}.err{color:var(--kill)}
+button{padding:8px 14px;border:1px solid var(--ink);border-radius:8px;background:var(--ink);color:#fff;font:inherit;font-weight:600;cursor:pointer}
+button.ghost{background:none;color:var(--ink);border-color:var(--line)}button:disabled{opacity:.5;cursor:default}
+
+/* ---- screen: input centered; after a result it moves to the top and the report sits under it ---- */
+.app{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--gap);height:100vh;padding:var(--gap)}
+.side{display:grid;gap:10px;width:min(620px,100%);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.flow{color:var(--mute);font-size:12px;margin-top:2px}.flow i{font-style:normal;margin:0 2px}
+.title .tot{margin-top:4px}
+textarea{width:100%;height:190px;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--soft);color:var(--ink);font:inherit;resize:vertical}
+.act{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.act .muted{flex:1;min-width:120px}
+.export{display:flex;gap:6px}.export button{padding:8px 12px;font-size:12px}
+main{width:100%;min-height:0;min-width:0}
+main:has(.report[hidden]){display:none}
+
+.has-report .app{justify-content:flex-start}
+.has-report .side{width:100%;grid-template-columns:230px 1fr auto;align-items:center;padding:10px 14px;gap:14px}
+.has-report textarea{height:62px;resize:none}
+.has-report main{flex:1}
+
+[hidden]{display:none!important}
+.report{display:grid;grid-template-rows:auto auto 1fr 1fr 1fr auto;gap:var(--gap);height:100%;min-height:0}
+.row{display:grid;gap:var(--gap);min-height:0;min-width:0}
+.r3{grid-template-columns:repeat(3,1fr)}.r2{grid-template-columns:2fr 1fr}.r-bottom{grid-template-columns:1.1fr 1.5fr .9fr}
+.row>.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:0;min-width:0;overflow:auto}
+.report>.print-only{display:none}
+.head{display:flex;align-items:center;gap:14px}
+.badge{font-size:28px;font-weight:800;letter-spacing:.04em;line-height:1;white-space:nowrap}
+.KILL{color:var(--kill)}.FIX{color:var(--fix)}.SHIP{color:var(--ship)}
+.head .why{flex:1;min-width:0;font-size:12.5px}
+.head .meta{text-align:right;color:var(--mute);font-size:11px;white-space:nowrap}
+.head .meta b{color:var(--ink);font-size:19px}
+.idea{white-space:pre-wrap;font-size:12px;color:var(--mute)}
+.scores{display:grid;grid-template-columns:repeat(var(--cols,6),1fr);gap:var(--gap)}
+.tile{border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:var(--soft);min-width:0}
+.tile .t{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;column-gap:6px;font-weight:600;font-size:12px}
+.tile .t small{font-weight:400;color:var(--mute);font-size:10px}
+.tile .n{font-weight:700;white-space:nowrap;margin-left:auto}
+.bar{height:5px;background:var(--line);border-radius:3px;margin:4px 0;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink)}
+.tile .l{font-size:10.5px;color:var(--mute);line-height:1.25;height:26px;overflow:hidden}
+.low{color:var(--fix)}
+.risk b{display:block;margin-bottom:3px}.risk small{display:block;color:var(--mute);font-size:11.5px;margin-top:3px}
+.card.foot{display:flex;justify-content:space-between;gap:12px;font-size:11px;color:var(--mute);padding:6px 12px}
+
+/* selects, delta, facts, history */
+select{min-width:0;flex:1;padding:5px 6px;border:1px solid var(--line);border-radius:6px;background:var(--soft);color:var(--ink);font:inherit;font-size:12px}
+.opts{display:flex;gap:6px;margin-top:8px}
+.up{color:var(--ship);font-weight:600}.down{color:var(--kill);font-weight:600}.same{color:var(--mute)}
+.verdict{display:flex;flex-direction:column;gap:4px;align-items:flex-start}.verdict small{font-size:10.5px;line-height:1.2;max-width:150px}
+.warn{color:var(--fix)}.ok{color:var(--mute)}
+.card li small{display:block;color:var(--mute);font-size:11px;line-height:1.25}
+.path{padding-left:17px}.path .arrow{color:var(--mute)}.path small{display:inline;color:var(--ship)}
+.hist{position:fixed;inset:0;background:rgba(0,0,0,.35);display:flex;justify-content:flex-end;z-index:10}
+.hist[hidden]{display:none}
+.hist-box{width:min(460px,100%);height:100%;background:var(--card);padding:14px;overflow:auto}
+.hist-top{display:flex;align-items:center;gap:8px;margin-bottom:10px}.hist-top h2{margin:0;flex:1}
+.sort button,.hist-top>button{padding:4px 8px;font-size:12px}.sort button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.h-item{display:flex;align-items:center;gap:8px;padding:8px;border:1px solid var(--line);border-radius:8px;margin-bottom:6px;cursor:pointer;background:var(--soft)}
+.h-item:hover{border-color:var(--ink)}.h-title{flex:1;min-width:0;font-size:12px}.h-title small{display:block;color:var(--mute);font-size:10.5px}
+.badge-s{font-size:10.5px;font-weight:800;min-width:38px}.del{padding:2px 7px;font-size:11px}
+.has-report .act{max-width:360px;justify-content:flex-end}
+
+/* small screens: everything stacks and the page scrolls normally */
+@media(max-width:900px),(max-height:640px){
+  html,body{height:auto}
+  .app{height:auto;min-height:100vh}
+  .has-report .side{grid-template-columns:1fr}.has-report textarea{height:90px;resize:vertical}
+  .has-report main{flex:none}
+  .report{display:flex;flex-direction:column;height:auto}.r3,.r2,.r-bottom{grid-template-columns:1fr}
+  .scores{grid-template-columns:repeat(2,1fr)}.row>.card{overflow:visible}
+  .head{flex-wrap:wrap}.head .meta{text-align:left;white-space:normal}
+}
+
+/* print: class "pm" is set by app.js on beforeprint so the layout can be measured and scaled to ONE A4 page.
+   Plain stacked blocks, no page-spanning grid (Chrome overlaps text when it splits one). */
+@page{size:A4;margin:8mm}
+@media print{html{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+.pm,.pm body{height:auto;overflow:visible;background:#fff;font-size:10.5px;line-height:1.35}
+.pm .no-print{display:none!important}.pm .report>.print-only{display:block}
+.pm .app{display:block;height:281mm;min-height:0;padding:0;overflow:hidden}.pm main{display:block}
+.pm .report{display:block;height:auto;width:194mm;transform-origin:top left}
+.pm .row{display:grid;gap:7px;margin-bottom:7px;break-inside:avoid}
+.pm .row>.card{overflow:visible;padding:7px 9px}
+.pm .r3{grid-template-columns:repeat(3,1fr)}.pm .r2{grid-template-columns:2fr 1fr}.pm .r-bottom{grid-template-columns:1.1fr 1.5fr .9fr}
+.pm .r-scores .scores{grid-template-columns:repeat(var(--cols,6),1fr);gap:7px}
+.pm .tile .l{height:auto;min-height:0;overflow:visible}
+.pm .badge{font-size:24px}.pm .head{flex-wrap:nowrap}

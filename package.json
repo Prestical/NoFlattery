@@ -1,0 +1,7 @@
+{
+  "name": "noflattery",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local Kill / Fix / Ship idea scorer: Jev scores, rules decide, a local Ollama model explains.",
+  "scripts": { "start": "node server.js", "test": "node --test tests/logic.test.js" }
+}

@@ -1,0 +1,7 @@
+.env
+.DS_Store
+node_modules/
+*.pdf
+.claude/settings.local.json
+Reports/history/
+usage.json

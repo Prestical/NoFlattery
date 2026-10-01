@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NoFlattery</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="side no-print">
+    <div class="title">
+      <h1>NoFlattery</h1>
+      <p class="flow">Idea <i>→</i> Jev scores <i>→</i> rules + local LLM</p>
+      <div class="opts">
+        <select id="profile" title="Project type: decides which questions count"></select>
+        <select id="model" title="Local model that writes the explanation"></select>
+      </div>
+      <p id="tot" class="muted tot"></p>
+    </div>
+    <textarea id="idea" placeholder="Describe your idea: what problem, for whom, why now; how you measure success; what you will and will not deliver; who must agree; resources, skills, time; top risks; what you give up by doing it."></textarea>
+    <div class="act">
+      <button id="go">Categorize</button>
+      <button id="hist-btn" class="ghost">History</button>
+      <div id="out-actions" class="export" hidden>
+        <button id="print" class="ghost">Print / PDF</button>
+        <button id="md" class="ghost">Markdown</button>
+        <button id="html" class="ghost">HTML</button>
+      </div>
+      <p id="msg" class="muted"></p>
+    </div>
+  </aside>
+  <main id="out">
+    <article id="report" class="report" hidden></article>
+  </main>
+</div>
+
+<div id="hist" class="hist no-print" hidden>
+  <div class="hist-box">
+    <div class="hist-top">
+      <h2>Saved reports</h2>
+      <span class="sort"><button id="sort-date" class="ghost on">Newest</button><button id="sort-score" class="ghost">Best score</button></span>
+      <button id="hist-close" class="ghost">Close</button>
+    </div>
+    <div id="hist-list"></div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
