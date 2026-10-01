@@ -7,6 +7,8 @@ You describe the idea in plain text; the app scores it, explains the verdict, an
 Idea  →  Jev scores a rubric  →  rules decide the verdict  →  local LLM (Ollama) explains it  →  report
 ```
 
+![NoFlattery report: verdict, 10 score tiles, strengths and weaknesses, top 3 risks, path to SHIP, advice and a test for this week](docs/screenshot.webp)
+
 | Step | Who does it | What it produces |
 |------|-------------|------------------|
 | 1. Scoring | **Jev** (API) | A 0–4 score and a confidence for each rubric question |
@@ -29,7 +31,11 @@ The server listens on `127.0.0.1` only. It is meant to run on your own computer 
 
 ## Setup
 
-1. **Get the code** and open a terminal in the project folder.
+1. **Get the code** and open a terminal in the project folder:
+   ```bash
+   git clone https://github.com/Prestical/NoFlattery.git
+   cd NoFlattery
+   ```
 
 2. **Install a local model** with Ollama (once):
    ```bash
@@ -131,6 +137,7 @@ public/index.html    Page structure
 public/style.css     Screen layout and the one-page print layout
 public/app.js        UI, report rendering, history, exports, print fitting
 tests/logic.test.js  Unit tests for verdicts, profiles, facts and model-output cleanup
+docs/screenshot.webp Screenshot used in this README
 Reports/history/     Saved reports (git-ignored)
 usage.json           Running Jev token/cost totals (git-ignored)
 .env / .env.example  Your settings / the empty template
